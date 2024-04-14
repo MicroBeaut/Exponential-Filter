@@ -5,7 +5,9 @@
 
 #define ONE_PI 3.1415926535897932384626433832795
 #define TWO_PI 6.283185307179586476925286766559
-
+#define FULLY_CHARGED     99.30   // Pencent
+#define FULLY_DISCHARGED  00.70   // Pencent
+#define TRACTIONAL        62.02   // Pencent
 
 class ExponentialFilter {
 private:
