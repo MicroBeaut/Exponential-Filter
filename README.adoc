@@ -5,5 +5,4 @@
 
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/ArduinoLintAction.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/ArduinoLintAction.yml"]
 
-# Exponential-Filter
 Exponential-Filter provides an exponential filter to smooth a "noisy" input data value.
