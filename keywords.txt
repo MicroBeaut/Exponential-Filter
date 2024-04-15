@@ -1,25 +1,53 @@
 ##################################################
-# Syntax Coloring Map For ExponentialFilter
+# Syntax Coloring Map For Exponential Filter
 ##################################################
 
 ##################################################
 # Datatypes (KEYWORD1)
 ##################################################
 ExponentialFilter             KEYWORD1
+mode_t                        KEYWORD1
+trigger_t                     KEYWORD1
+doubleOperation_t             KEYWORD1
+operation_t                   KEYWORD1
 
 ##################################################
 # Methods and Functions (KEYWORD2)
 ##################################################
-ExponentialFilter             KEYWORD2
+expFilter                     KEYWORD2
 timeResponse                  KEYWORD2
 frequency                     KEYWORD2
 timeConstant                  KEYWORD2
-filter                        KEYWORD2
+mode                          KEYWORD2
+init                          KEYWORD2
+trigger                       KEYWORD2
 
 ##################################################
-# Constants (LITERAL1)keywords.txt
+# Constants (LITERAL1)
 ##################################################
+output                      LITERAL1
+trigger                     LITERAL1
+lowerTrigger                LITERAL1
+upperTrigger                LITERAL1
 ONE_PI                      LITERAL1
 TWO_PI                      LITERAL1
-output                      LITERAL1
-time                        LITERAL1
+FULLY_CHARGED               LITERAL1
+FULLY_DISCHARGED            LITERAL1
+TRACTIONAL                  LITERAL1
+AUTO                        LITERAL1
+MANUAL                      LITERAL1
+LAST_TRIGGER                LITERAL1
+LOWER_TRIGGER               LITERAL1
+UPPER_TRIGGER               LITERAL1
+LTGT                        LITERAL1
+GTLT                        LITERAL1
+LEGE                        LITERAL1
+GELE                        LITERAL1
+LTLT                        LITERAL1
+GTGT                        LITERAL1
+LTGE                        LITERAL1
+LEGT                        LITERAL1
+LT                         LITERAL1  
+GT                          LITERAL1
+LE                          LITERAL1
+GE                          LITERAL1
