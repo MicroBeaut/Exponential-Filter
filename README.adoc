@@ -5,5 +5,6 @@
 
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/Arduino-Lint-Action.yml/badge.svg["Arduino Lint Action Status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/Arduino-Lint-Action.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/Spell-Check.yml/badge.svg["Spell Check", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/Spell-Check.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/Compile-Examples.yml/badge.svg["Compile Examples", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/Compile-Examples.yml"]
 
 Exponential-Filter provides an exponential filter to smooth a "noisy" input data value.
