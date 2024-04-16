@@ -41,7 +41,7 @@ enum doubleOperation_t : uint8_t {
   GELE
 };
 
-const operation_t comparation[4][2] = {
+const operation_t mapOperations[4][2] = {
   {LT, GT}, // LTGT
   {GT, LT}, // GTLT
   {LE, GE}, // LEGE

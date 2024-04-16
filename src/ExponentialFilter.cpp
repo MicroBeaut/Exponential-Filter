@@ -65,8 +65,8 @@ bool ExponentialFilter::schmittTrigger(trigger_t *trigger) {
 }
 
 bool ExponentialFilter::internalTriggerCompare(trigger_t *trigger) {
-  if (internalCompare( _output, trigger->upperThreshold, comparation[trigger->operation][1])) return true;
-  if (internalCompare(_output, trigger->lowerThreshold, comparation[trigger->operation][0])) return false;
+  if (internalCompare( _output, trigger->upperThreshold, mapOperations[trigger->operation][1])) return true;
+  if (internalCompare(_output, trigger->lowerThreshold, mapOperations[trigger->operation][0])) return false;
   return trigger->trigger;
 }
 
