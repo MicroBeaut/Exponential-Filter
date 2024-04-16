@@ -25,7 +25,7 @@ void setup() {
 }
 
 void loop() {
-  expButton.expFilter(!digitalRead(BUTTON_PIN));  // INPUT = INVERT INPUT
+  expButton.filter(!digitalRead(BUTTON_PIN));  // INPUT = INVERT INPUT
   expButton.schmittTrigger(&trigger);
   if (trigger.upperRising) toggle = !toggle;
   digitalWrite(LED_BUILTIN, toggle);

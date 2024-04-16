@@ -80,7 +80,7 @@ class ExponentialFilter {
     void timeConstant(float timeConstant);
     void mode(bool mode);
     void init(float input);
-    float expFilter(float input);
+    float filter(float input);
     bool schmittTrigger(ExpTrigger *trigger);
 };
 

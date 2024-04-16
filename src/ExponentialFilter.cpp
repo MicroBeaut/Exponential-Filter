@@ -36,7 +36,7 @@ void ExponentialFilter::mode(bool mode) {
 }
 
 
-float ExponentialFilter::expFilter(float input) {
+float ExponentialFilter::filter(float input) {
   unsigned long currTime = micros();
   unsigned long elapsedTime = currTime - _lastTime;
   _lastTime = currTime;
