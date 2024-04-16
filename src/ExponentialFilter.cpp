@@ -54,7 +54,7 @@ float ExponentialFilter::expFilter(float input) {
 }
 
 
-bool ExponentialFilter::schmittTrigger(trigger_t *trigger) {
+bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
   trigger->lowerRising = false;
   trigger->upperRising = false;
   bool prevTrigger = trigger->trigger;
@@ -64,13 +64,13 @@ bool ExponentialFilter::schmittTrigger(trigger_t *trigger) {
   return trigger->trigger;
 }
 
-bool ExponentialFilter::internalTriggerCompare(trigger_t *trigger) {
+bool ExponentialFilter::internalTriggerCompare(ExpTrigger *trigger) {
   if (internalCompare( _output, trigger->upperThreshold, mapOperations[trigger->operation][1])) return true;
   if (internalCompare(_output, trigger->lowerThreshold, mapOperations[trigger->operation][0])) return false;
   return trigger->trigger;
 }
 
-bool ExponentialFilter::internalCompare(float a, float b, operation_t operation) {
+bool ExponentialFilter::internalCompare(float a, float b, ExpOperations operation) {
   switch (operation) {
     case LT:
       return a < b;

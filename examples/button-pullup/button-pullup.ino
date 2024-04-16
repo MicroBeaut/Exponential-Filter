@@ -8,7 +8,7 @@
 const float lowerThreshold = 0.293 * (MAX_INPUT - MIN_INPUT);
 const float upperThreshold = 0.707 * (MAX_INPUT - MIN_INPUT);
 
-trigger_t trigger {
+ExpTrigger trigger {
   lowerThreshold, upperThreshold, GTLT
 };
 

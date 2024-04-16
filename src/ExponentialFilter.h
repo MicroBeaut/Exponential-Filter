@@ -22,26 +22,26 @@
 #define MS2S(ms) (ms * 0.001)
 #define US2S(us) (us * 0.000001)
 
-enum mode_t {
+enum ExpModes {
   AUTO,
   MANUAL
 };
 
-enum operation_t {
+enum ExpOperations {
   LT,
   GT,
   LE,
   GE
 };
 
-enum doubleOperation_t {
+enum ExpDoubleOperations {
   LTGT,
   GTLT,
   LEGE,
   GELE
 };
 
-const operation_t mapOperations[4][2] = {
+const ExpOperations mapOperations[4][2] = {
   {LT, GT}, // LTGT
   {GT, LT}, // GTLT
   {LE, GE}, // LEGE
@@ -51,12 +51,12 @@ const operation_t mapOperations[4][2] = {
 typedef struct {
   float lowerThreshold;
   float upperThreshold;
-  doubleOperation_t operation;
+  ExpDoubleOperations operation;
 
   bool trigger;
   bool lowerRising;
   bool upperRising;
-} trigger_t;
+} ExpTrigger;
 
 
 class ExponentialFilter {
@@ -68,8 +68,8 @@ class ExponentialFilter {
 
     unsigned long _lastTime;
 
-    bool internalTriggerCompare(trigger_t *trigger);
-    bool internalCompare(float a, float b, operation_t operation);
+    bool internalTriggerCompare(ExpTrigger *trigger);
+    bool internalCompare(float a, float b, ExpOperations operation);
   public:
     float &input;
     float &output;
@@ -81,7 +81,7 @@ class ExponentialFilter {
     void mode(bool mode);
     void init(float input);
     float expFilter(float input);
-    bool schmittTrigger(trigger_t *trigger);
+    bool schmittTrigger(ExpTrigger *trigger);
 };
 
 #endif // EXPONENTIALFILTER_H
