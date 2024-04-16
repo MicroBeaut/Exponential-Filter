@@ -14,13 +14,13 @@ operation_t                   KEYWORD1
 ##################################################
 # Methods and Functions (KEYWORD2)
 ##################################################
-expFilter                     KEYWORD2
-timeResponse                  KEYWORD2
-frequency                     KEYWORD2
+cutoffTime                    KEYWORD2
+cuttoffFrequency              KEYWORD2
 timeConstant                  KEYWORD2
 mode                          KEYWORD2
 init                          KEYWORD2
-trigger                       KEYWORD2
+expFilter                     KEYWORD2
+schmittTrigger                KEYWORD2
 
 ##################################################
 # Constants (LITERAL1)
@@ -29,25 +29,21 @@ output                      LITERAL1
 trigger                     LITERAL1
 lowerTrigger                LITERAL1
 upperTrigger                LITERAL1
-ONE_PI                      LITERAL1
+lowerThreshold              LITERAL1
+upperThreshold              LITERAL1
+operation                   LITERAL1
 TWO_PI                      LITERAL1
 FULLY_CHARGED               LITERAL1
 FULLY_DISCHARGED            LITERAL1
+CUTOFF                      LITERAL1
 TRACTIONAL                  LITERAL1
 AUTO                        LITERAL1
 MANUAL                      LITERAL1
-LAST_TRIGGER                LITERAL1
-LOWER_TRIGGER               LITERAL1
-UPPER_TRIGGER               LITERAL1
 LTGT                        LITERAL1
 GTLT                        LITERAL1
 LEGE                        LITERAL1
 GELE                        LITERAL1
-LTLT                        LITERAL1
-GTGT                        LITERAL1
-LTGE                        LITERAL1
-LEGT                        LITERAL1
-LT                         LITERAL1  
+LT                          LITERAL1  
 GT                          LITERAL1
 LE                          LITERAL1
 GE                          LITERAL1

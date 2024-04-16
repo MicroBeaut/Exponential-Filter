@@ -1,37 +1,30 @@
+/*
+  MIT License
+  Copyright (c) 2024 MicroBeaut
+*/
+
 #ifndef EXPONENTIALFILTER_H
 #define EXPONENTIALFILTER_H
 
 #include <Arduino.h>
 
-#define ONE_PI 3.1415926535897932384626433832795
+#ifndef TWO_PI
 #define TWO_PI 6.283185307179586476925286766559
-#define FULLY_CHARGED     0.993   // Pencent
-#define FULLY_DISCHARGED  0.007   // Pencent
-#define TRACTIONAL        0.632   // Pencent
+#endif  // TWO_PI
 
-#define T2MS(sec) (sec * 0.001)
-#define T2US(sec) (sec * 0.000001)
+#define FULLY_CHARGED     99.3    // Pencent
+#define FULLY_DISCHARGED  0.7     // Pencent
+#define CUTOFF            70.7    // Pencent
+#define TRACTIONAL        63.2    // Pencent
+
+#define S2MS(sec) (sec * 1000)
+#define S2US(sec) (sec * 1000000)
+#define MS2S(ms) (ms * 0.001)
+#define US2S(us) (us * 0.000001)
 
 enum mode_t : bool {
-  MANUAL,
-  AUTO
-};
-
-enum trigger_t : uint8_t {
-  LAST_TRIGGER,
-  LOWER_TRIGGER,
-  UPPER_TRIGGER
-};
-
-enum doubleOperation_t : uint8_t {
-  LTGT,
-  GTLT,
-  LEGE,
-  GELE,
-  LTLT,
-  GTGT,
-  LTGE,
-  LEGT
+  AUTO,
+  MANUAL
 };
 
 enum operation_t : uint8_t {
@@ -41,45 +34,54 @@ enum operation_t : uint8_t {
   GE
 };
 
-const operation_t comparation[8][2] = {
-  {LT, GT},
-  {GT, LT},
-  {LE, GE},
-  {GE, LE},
-  {LT, LT},
-  {GT, GT},
-  {LT, GE},
-  {LE, GT}
+enum doubleOperation_t : uint8_t {
+  LTGT,
+  GTLT,
+  LEGE,
+  GELE
 };
 
-/// @brief fdafd
+const operation_t comparation[4][2] = {
+  {LT, GT}, // LTGT
+  {GT, LT}, // GTLT
+  {LE, GE}, // LEGE
+  {GE, LE}  // GELE
+};
+
+typedef struct {
+  float lowerThreshold;
+  float upperThreshold;
+  doubleOperation_t operation;
+
+  bool trigger;
+  bool lowerRising;
+  bool upperRising;
+} trigger_t;
+
+
 class ExponentialFilter {
   private:
-    double _timeConstant;     // τ = RC
-    double _output;
+    float _timeConstant;
+    float _input;
+    float _output;
     bool _mode;
-    bool _trigger;
-    bool _lowerTrigger;
-    bool _upperTrigger;
 
     unsigned long _lastTime;
-    bool compare(double upperTrigger = FULLY_CHARGED, double lowerTrigger = FULLY_DISCHARGED, doubleOperation_t operation = LTGT, bool triggerState = false);
-    bool comparator(operation_t operation, double a, double b);
-  
+
+    bool internalTriggerCompare(trigger_t *trigger);
+    bool internalCompare(float a, float b, operation_t operation);
   public:
-    double &output;
-    bool &trigger;
-    bool &lowerTrigger;
-    bool &upperTrigger;
+    float &input;
+    float &output;
 
     ExponentialFilter();
-    void timeResponse(double time);
-    void frequency(double cutoffFrequency);
-    void timeConstant(double rc);
+    void cutoffTime(float time);
+    void cutoffFrequency(float cutoffFrequency);
+    void timeConstant(float timeConstant);
     void mode(bool mode);
-    void init(double output);
-    double expFilter(double input);
-    bool schmittTriggers(double upperTrigger = FULLY_CHARGED, double lowerTrigger = FULLY_DISCHARGED, doubleOperation_t operation = LTGT, bool triggerState = false);
+    void init(float input);
+    float expFilter(float input);
+    bool schmittTrigger(trigger_t *trigger);
 };
 
 #endif // EXPONENTIALFILTER_H
