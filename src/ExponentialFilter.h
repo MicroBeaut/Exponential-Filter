@@ -27,6 +27,13 @@ enum ExpModes {
   MANUAL
 };
 
+enum TriggerStates {
+  NONE_TRIGGER,
+  LOWER_TRIGGER,
+  UPPER_TRIGGER
+};
+
+
 enum ExpOperations {
   LT,
   GT,
@@ -58,21 +65,34 @@ typedef struct {
   bool upperRising;
 } ExpTrigger;
 
+typedef struct {
+  uint8_t id;
+  float input;
+  float output;
+  float timeConstant;
+  TriggerStates state;
+} ExpEventArgs;
 
+
+typedef void (*ExpCallbackFunction)(ExpEventArgs);
 class ExponentialFilter {
   private:
     float _timeConstant;
     float _input;
     float _output;
     bool _mode;
+    uint8_t _id;
+    ExpCallbackFunction _function;
 
     unsigned long _lastTime;
 
     bool internalTriggerCompare(ExpTrigger *trigger);
     bool internalCompare(float a, float b, ExpOperations operation);
+    void internalOnTrigger(ExpTrigger *trigger);
   public:
     float &input;
     float &output;
+    uint8_t &id;
 
     ExponentialFilter();
     void cutoffTime(float time);
@@ -80,6 +100,7 @@ class ExponentialFilter {
     void timeConstant(float timeConstant);
     void mode(bool mode);
     void init(float input);
+    void eventOnTrigger(uint8_t id, ExpCallbackFunction function);
     float filter(float input);
     bool schmittTrigger(ExpTrigger *trigger);
 };

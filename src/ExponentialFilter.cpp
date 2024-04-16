@@ -5,7 +5,7 @@
 
 #include "ExponentialFilter.h"
 
-ExponentialFilter::ExponentialFilter(): output(_output), input(_input) {
+ExponentialFilter::ExponentialFilter(): output(_output), input(_input), id(_id) {
   cutoffTime(1);
   _mode = AUTO;
 }
@@ -15,6 +15,10 @@ void ExponentialFilter::init(float input) {
   _output = (float)input;
 }
 
+void ExponentialFilter::eventOnTrigger(uint8_t id, ExpCallbackFunction function) {
+  _id = id;
+  _function = function;
+}
 
 void ExponentialFilter::cutoffTime(float cutoffTime) {
   _timeConstant = cutoffTime / TWO_PI;
@@ -61,14 +65,31 @@ bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
   trigger->trigger = internalTriggerCompare(trigger);
   trigger->upperRising = trigger->trigger == true & prevTrigger == false;
   trigger->lowerRising = trigger->trigger == false & prevTrigger == true;
+  internalOnTrigger(trigger);
   return trigger->trigger;
 }
+
+void ExponentialFilter::internalOnTrigger(ExpTrigger *trigger) {
+  if (_function) {
+    ExpEventArgs e = {id: _id, input: _input, output: _output, timeConstant: _timeConstant};
+    if (trigger->lowerRising) {
+      e.state = LOWER_TRIGGER;
+      _function(e);
+    } else if (trigger->upperRising) {
+      e.state = UPPER_TRIGGER;
+      _function(e);
+    }
+    e.state = NONE_TRIGGER;
+  }
+}
+
 
 bool ExponentialFilter::internalTriggerCompare(ExpTrigger *trigger) {
   if (internalCompare( _output, trigger->upperThreshold, mapOperations[trigger->operation][1])) return true;
   if (internalCompare(_output, trigger->lowerThreshold, mapOperations[trigger->operation][0])) return false;
   return trigger->trigger;
 }
+
 
 bool ExponentialFilter::internalCompare(float a, float b, ExpOperations operation) {
   switch (operation) {
