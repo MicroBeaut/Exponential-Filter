@@ -13,12 +13,10 @@ ExpTrigger trigger {
 };
 
 ExponentialFilter expButton;
-bool toggle;
 
 void OnTrigger(ExpEventArgs e);
 
 void setup() {
-  Serial.begin(115200);
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(LED_BUILTIN, OUTPUT);
 
@@ -31,23 +29,15 @@ void setup() {
 void loop() {
   expButton.filter(digitalRead(BUTTON_PIN));
   expButton.schmittTrigger(&trigger);
-  if (trigger.upperRising) toggle = !toggle;
-  digitalWrite(LED_BUILTIN, toggle);
 }
 
 void OnTrigger(ExpEventArgs e) {
   switch (e.state) {
     case LOWER_TRIGGER:
-      Serial.print("EVENT:");
-      Serial.print("LOWER");
-      Serial.print(" ID:");
-      Serial.println(e.id);
+      digitalWrite(LED_BUILTIN, HIGH);
       break;
     case UPPER_TRIGGER:
-      Serial.print("EVENT:");
-      Serial.print("UPPER");
-      Serial.print(" ID:");
-      Serial.println(e.id);
+      digitalWrite(LED_BUILTIN, LOW);
       break;
   }
 }
