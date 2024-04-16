@@ -22,19 +22,19 @@
 #define MS2S(ms) (ms * 0.001)
 #define US2S(us) (us * 0.000001)
 
-enum mode_t : bool {
+enum mode_t {
   AUTO,
   MANUAL
 };
 
-enum operation_t : uint8_t {
+enum operation_t {
   LT,
   GT,
   LE,
   GE
 };
 
-enum doubleOperation_t : uint8_t {
+enum doubleOperation_t {
   LTGT,
   GTLT,
   LEGE,
