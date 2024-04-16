@@ -59,12 +59,12 @@ float ExponentialFilter::filter(float input) {
 
 
 bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
-  trigger->lowerRising = false;
-  trigger->upperRising = false;
+  trigger->lowerTrigger = false;
+  trigger->upperTrigger = false;
   bool prevTrigger = trigger->trigger;
   trigger->trigger = internalTriggerCompare(trigger);
-  trigger->upperRising = trigger->trigger == true & prevTrigger == false;
-  trigger->lowerRising = trigger->trigger == false & prevTrigger == true;
+  trigger->upperTrigger = trigger->trigger == true & prevTrigger == false;
+  trigger->lowerTrigger = trigger->trigger == false & prevTrigger == true;
   internalOnTrigger(trigger);
   return trigger->trigger;
 }
@@ -72,10 +72,10 @@ bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
 void ExponentialFilter::internalOnTrigger(ExpTrigger *trigger) {
   if (_function) {
     ExpEventArgs e = {id: _id, input: _input, output: _output, timeConstant: _timeConstant};
-    if (trigger->lowerRising) {
+    if (trigger->lowerTrigger) {
       e.state = LOWER_TRIGGER;
       _function(e);
-    } else if (trigger->upperRising) {
+    } else if (trigger->upperTrigger) {
       e.state = UPPER_TRIGGER;
       _function(e);
     }

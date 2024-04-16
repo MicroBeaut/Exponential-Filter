@@ -61,8 +61,8 @@ typedef struct {
   ExpDoubleOperations operation;
 
   bool trigger;
-  bool lowerRising;
-  bool upperRising;
+  bool lowerTrigger;
+  bool upperTrigger;
 } ExpTrigger;
 
 typedef struct {
