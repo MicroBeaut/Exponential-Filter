@@ -5,64 +5,63 @@
 ##################################################
 # Datatypes (KEYWORD1)
 ##################################################
-ExponentialFilter             KEYWORD1
-ExpTrigger                    KEYWORD1
-ExpEventArgs                  KEYWORD1
-ExpCallbackFunction           KEYWORD1
+ExpModes                        KEYWORD1
+StateEventArgs                  KEYWORD1
+ExpOperations                   KEYWORD1
+ExpDoubleOperations             KEYWORD1
+ExpTrigger                      KEYWORD1
 
+ExponentialFilter               KEYWORD1
+ExpEventArgs                    KEYWORD1
+ExpCallbackFunction             KEYWORD1
+               
 ##################################################
 # Methods and Functions (KEYWORD2)
 ##################################################
-cutoffTime                    KEYWORD2
-cuttoffFrequency              KEYWORD2
-timeConstant                  KEYWORD2
-mode                          KEYWORD2
-init                          KEYWORD2
-eventOnTrigger                KEYWORD2
-filter                        KEYWORD2
-schmittTrigger                KEYWORD2
+cutoffTime                      KEYWORD2
+cuttoffFrequency                KEYWORD2
+timeConstant                    KEYWORD2
+init                            KEYWORD2
+eventOnTrigger                  KEYWORD2
+filter                          KEYWORD2
+schmittTrigger                  KEYWORD2
 
 ##################################################
 # Constants (LITERAL1)
 ##################################################
-ExpModes                      LITERAL1
-TriggerStates                 LITERAL1
-ExpDoubleOperations           LITERAL1
-ExpOperations                 LITERAL1
+# ExpModes
+AUTO                            LITERAL1
+MANUAL                          LITERAL1
 
-# ExpEventArgs
-id                            LITERAL1
-input                         LITERAL1
-output                        LITERAL1
-timeConstant                  LITERAL1
-state                         LITERAL1
+# StateEventArgs
+NONE_TRIGGER                    LITERAL1
+LOWER_TRIGGER                   LITERAL1
+UPPER_TRIGGER                   LITERAL1
+
+# ExpOperations
+LT                              LITERAL1
+GT                              LITERAL1
+LE                              LITERAL1
+GE                              LITERAL1
+
+# ExpOperations
+LTGT                            LITERAL1
+GTLT                            LITERAL1
+LEGE                            LITERAL1
+GELE                            LITERAL1
 
 # ExpTrigger
-lowerThreshold                LITERAL1
-upperThreshold                LITERAL1
-operation                     LITERAL1
-trigger                       LITERAL1
-lowerTrigger                  LITERAL1
-upperTrigger                  LITERAL1
-
-TWO_PI                        LITERAL1
-FULLY_CHARGED                 LITERAL1
-FULLY_DISCHARGED              LITERAL1
-CUTOFF                        LITERAL1
-TRACTIONAL                    LITERAL1
-
-AUTO                          LITERAL1
-MANUAL                        LITERAL1
-NONE_TRIGGER                  LITERAL1
-LOWER_TRIGGER                 LITERAL1
-UPPER_TRIGGER                 LITERAL1
+lowerThreshold                  LITERAL1
+upperThreshold                  LITERAL1
+operation                       LITERAL1
+trigger                         LITERAL1
+lowerTrigger                    LITERAL1
+upperTrigger                    LITERAL1
 
 
-LTGT                          LITERAL1
-GTLT                          LITERAL1
-LEGE                          LITERAL1
-GELE                          LITERAL1
-LT                            LITERAL1  
-GT                            LITERAL1
-LE                            LITERAL1
-GE                            LITERAL1
+# ExpEventArgs
+id                              LITERAL1
+input                           LITERAL1
+output                          LITERAL1
+timeConstant                    LITERAL1
+state                           LITERAL1

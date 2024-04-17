@@ -69,6 +69,7 @@ bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
   return trigger->trigger;
 }
 
+
 void ExponentialFilter::internalOnTrigger(ExpTrigger *trigger) {
   if (_function) {
     ExpEventArgs e = {id: _id, input: _input, output: _output, timeConstant: _timeConstant};
@@ -79,6 +80,7 @@ void ExponentialFilter::internalOnTrigger(ExpTrigger *trigger) {
       e.state = UPPER_TRIGGER;
       _function(e);
     }
+    
     e.state = NONE_TRIGGER;
   }
 }
