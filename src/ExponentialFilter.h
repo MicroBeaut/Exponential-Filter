@@ -100,7 +100,7 @@ typedef struct {
   float output;
   /// @brief Exponential Time Const (RC)
   float timeConstant;
-
+  /// @brief The State Event Arguments
   StateEventArgs state;
 } ExpEventArgs;
 
