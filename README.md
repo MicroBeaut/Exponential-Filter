@@ -9,8 +9,8 @@
 Arduino Exponential-Filter provides an exponential filter to smooth a "noisy" input data value.
 
 ```
-OUTPUT[t] = *OUTPUT[t-1]* + α(INPUT[t] - *OUTPUT[t-1]*)
-         += α(INPUT[t] - *OUTPUT[t-1]*)
+OUTPUT[t] = OUTPUT[t-1] + α(INPUT[t] - OUTPUT[t-1])
+         += α(INPUT[t] - OUTPUT[t-1])
 
 Where:
 α   = ∆t/ (RC + ∆t)
