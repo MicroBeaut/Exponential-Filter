@@ -5,7 +5,7 @@
 
 #include "ExponentialFilter.h"
 
-ExponentialFilter::ExponentialFilter(): output(_output), input(_input), id(_id) {
+ExponentialFilter::ExponentialFilter(): output(_output), input(_input), id(_id), trigger(_trigger) {
   cutoffTime(1);
   _mode = AUTO;
 }
@@ -15,10 +15,12 @@ void ExponentialFilter::init(float input) {
   _output = (float)input;
 }
 
+
 void ExponentialFilter::eventOnTrigger(uint8_t id, ExpCallbackFunction function) {
   _id = id;
   _function = function;
 }
+
 
 void ExponentialFilter::cutoffTime(float cutoffTime) {
   _timeConstant = cutoffTime / TWO_PI;
@@ -63,6 +65,7 @@ bool ExponentialFilter::schmittTrigger(ExpTrigger *trigger) {
   trigger->upperTrigger = false;
   bool prevTrigger = trigger->trigger;
   trigger->trigger = internalTriggerCompare(trigger);
+  _trigger = trigger->trigger;
   trigger->upperTrigger = trigger->trigger == true & prevTrigger == false;
   trigger->lowerTrigger = trigger->trigger == false & prevTrigger == true;
   internalOnTrigger(trigger);
@@ -80,7 +83,6 @@ void ExponentialFilter::internalOnTrigger(ExpTrigger *trigger) {
       e.state = UPPER_TRIGGER;
       _function(e);
     }
-    
     e.state = NONE_TRIGGER;
   }
 }
